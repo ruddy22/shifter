@@ -1,0 +1,13 @@
+{
+  "name": "shifter",
+  "version": "1.0.0",
+  "description": "test task for wonderobe",
+  "main": "index.js",
+  "repository": "https://github.com/ruddy22/shifter.git",
+  "author": "Aleksei Petrov",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^25.1.0",
+    "yargs": "^15.1.0"
+  }
+}
