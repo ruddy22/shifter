@@ -1,4 +1,6 @@
 const yargs = require('yargs');
+const validationRules = require('./src/validation_rules');
+const processInput = require('./src/input_processing');
 
 const argv = yargs
   .option('input', {
@@ -12,13 +14,13 @@ const argv = yargs
     alias: 'i',
     type: 'boolean',
     description: 'application interactive mode',
-    default: true
+    default: false
   })
   .option('automative', {
     alias: 'a',
     type: 'boolean',
     description: 'application automative mode',
-    default: false
+    default: true
   })
   .option('with-zeros', {
     alias: 'z',
@@ -35,3 +37,6 @@ const argv = yargs
   .help('help')
   .alias('h','help')
   .argv;
+
+const res = processInput(argv.input, argv.separator, validationRules);
+console.log(res);

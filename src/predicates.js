@@ -4,6 +4,7 @@
  */
 
 const helpers = require('./helpers');
+const specificCharsRegex = /\/|"|\[|\]|\||\:|\<|\>|\+|\=|\;|\,|\?|\*|\@|\%2F|\%22|\%5B|\%5D|\%3A|\%7C|\%3C|\%3E|\%2B|\%3D|\%3B|\%2C|\%3F|\%40|\\u002F|\\u0022|\\u005B|\\u005D|\\u003A|\\u007C|\\u003C|\\u003E|\\u002B|\\u003D|\\u003B|\\u002C|\\u003F|\\u002A|\\u0040/gim;
 
 /**
  * compare array length with 1
@@ -54,6 +55,20 @@ const isEqual = (a, b) => a === b;
 const isNotZero = (val) => val !== 0 && val !== '0';
 
 /**
+ * checks existence
+ * @param {String} str
+ * @returns {Boolean}
+ */
+const inputExists = str => str !== '' && str !== null && str !== undefined;
+
+/**
+ * checks string for specific chars
+ * @param {String} str
+ * @returns {Boolean}
+ */
+const hasNotSpecificChars = str => !specificCharsRegex.test(str);
+
+/**
  * module api
  */
 module.exports = {
@@ -63,4 +78,6 @@ module.exports = {
   isNumber,
   isEqual,
   isNotZero,
+  inputExists,
+  hasNotSpecificChars,
 };
