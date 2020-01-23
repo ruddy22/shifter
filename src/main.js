@@ -5,10 +5,11 @@
 
 const { getKey } = require('./helpers');
 const autoModeFn = require('./auto_mode');
+const interactiveModeFn = require('./interactive_mode');
 
 const modes = {
   'auto': autoModeFn,
-  'interactive': () => ({})
+  'interactive': interactiveModeFn
 };
 
 const printResult = (res) => {
@@ -25,12 +26,8 @@ const printResult = (res) => {
  * @param {Number[]} arr
  * @return {Void}
  */
-const main = (mode, useZeros, arr) => {
-  const modeFn = getKey(modes)(mode);
-  const res = modeFn(useZeros, arr);
-  printResult(res);
-}
-  // printResult(getKey(modes)(mode)(useZeros, arr));
+const main = (mode, useZeros, arr) =>
+  printResult(getKey(modes)(mode)(useZeros, arr));
 
 /**
  * module api
