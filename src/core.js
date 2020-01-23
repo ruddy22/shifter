@@ -102,6 +102,44 @@ const checkShiftPossibility = (arr) => {
 };
 
 /**
+ * possible shift directions and their handlers
+ */
+const directionHandlers = {
+  left: arr => arr.push.bind(arr, 0),
+  right: arr => arr.unshift.bind(arr, 0)
+};
+
+/**
+ * returns handler for direction
+ * @param {String} direction
+ * @returns {Function}
+ */
+const getDirectionHandler = direction =>
+  helpers.getKey(directionHandlers)(direction);
+
+/**
+ * calls income function n times
+ * @param {Number} n - count of reps
+ * @param {Function} fn
+ * @returns {Void}
+ */
+const repeat = (n, fn) => {
+  for (let i = 0; i < n; i+=1) {
+    fn();
+  }
+};
+
+/**
+ * puts zeros into array
+ * @param {Number} arr
+ * @param {String} direction
+ * @param {Number} zeroCount
+ * @returns {Void}
+ */
+const addZeros = (arr, direction, zerosCount) =>
+  repeat(zerosCount, getDirectionHandler(direction)(arr));
+
+/**
  * module api
  */
 module.exports = {
@@ -109,5 +147,7 @@ module.exports = {
   reduceArray,
   fillDict,
   checksDictForDups,
-  checkNearestPositions
+  checkNearestPositions,
+  addZeros,
+  repeat,
 };

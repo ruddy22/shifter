@@ -7,12 +7,13 @@ const handleError = require('./errors_handling');
 
 /**
  * process user input
+ * TODO: split on 3 functions
  * @param {String} incomeStr
  * @param {String} sep
  * @param {Function[]} validationRules
  * @returns {Number[]}
  */
-const processInput = (incomeStr, sep, validationRules) => {
+const processInput = (sep, validationRules, incomeStr) => {
   const rulesForIncomeString = validationRules.slice(0, 3);
 
   for (let k = 0; k < rulesForIncomeString.length; k += 1) {

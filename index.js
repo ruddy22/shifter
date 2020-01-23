@@ -1,6 +1,8 @@
 const yargs = require('yargs');
 const validationRules = require('./src/validation_rules');
 const processInput = require('./src/input_processing');
+const main = require('./src/main');
+const { compose } = require('./src/helpers');
 
 const argv = yargs
   .option('input', {
@@ -16,13 +18,7 @@ const argv = yargs
     description: 'application interactive mode',
     default: false
   })
-  .option('automative', {
-    alias: 'a',
-    type: 'boolean',
-    description: 'application automative mode',
-    default: true
-  })
-  .option('with-zeros', {
+  .option('with_zeros', {
     alias: 'z',
     type: 'boolean',
     description: 'add zeros if array will be reduce',
@@ -38,5 +34,6 @@ const argv = yargs
   .alias('h','help')
   .argv;
 
-const res = processInput(argv.input, argv.separator, validationRules);
-console.log(res);
+const processInputFn = processInput.bind(null, argv.separator, validationRules); // (argv.input )
+const mainFn = main.bind(null, argv.interactive ? 'interactive' : 'auto', argv.with_zeros);
+mainFn(argv.input.split(argv.separator).map(char => parseInt(char, 10)))
