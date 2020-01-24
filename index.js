@@ -36,4 +36,5 @@ const argv = yargs
 
 const processInputFn = processInput.bind(null, argv.separator, validationRules); // (argv.input )
 const mainFn = main.bind(null, argv.interactive ? 'interactive' : 'auto', argv.with_zeros);
-mainFn(argv.input.split(argv.separator).map(char => parseInt(char, 10)))
+const fn = compose(processInputFn, mainFn);
+fn(argv.input);
